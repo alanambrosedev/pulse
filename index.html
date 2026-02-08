@@ -2,51 +2,256 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>The Ultimate CSS Master Guide</title>
     <style>
+      /* --- 1. BACKGROUNDS & GRADIENTS --- */
       body {
-        font-family: sans-serif;
-        line-height: 1.4;
-        color: #333;
-        padding: 20px;
+        --textcol: rgb(56, 23, 108);
+        /* LINEAR GRADIENT: A smooth color fade in a straight line (The "Sunset") */
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        font-family: "Segoe UI", sans-serif;
+        padding: 40px;
+        margin: 0;
+        height: 2500px; /* Tall height so we can test the Sticky/Fixed positions while scrolling */
       }
 
-      h1 {
-        border: 10px solid #248549;
-        border-radius: 5px;
-        padding: 20px;
-        width: auto;
-        outline: 10px dotted red;
-      }
-
-      p {
+      /* --- 2. THE BOX MODEL (Sizing & Spacing) --- */
+      .container {
+        /* MAX-WIDTH: The "Elastic Wall." Limits how wide the box can grow on big screens */
         max-width: 800px;
-        margin-bottom: 20px;
-        padding-right: 20px;
-        padding-bottom: 20px;
+        /* MARGIN: 0 AUTO: The "Perfect Center." Pushes left/right sides equally */
+        margin: 0 auto;
+        background: white;
+        padding: 30px; /* PADDING: The "Cushion" inside the box to keep text away from edges */
+        border-radius: 15px; /* BORDER-RADIUS: Rounds the sharp corners */
+        /* BOX-SHADOW: The "Depth." Adds a shadow underneath to make it look 3D */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       }
 
-      .blue-box {
+      .border-demo {
+        /* BORDER STYLES: Dotted (dots) and Dashed (dashes) walls */
+        border-top: 5px dotted #248549;
+        border-bottom: 5px dashed #3b82f6;
+        padding: 15px;
+        margin: 20px 0;
+      }
+
+      .circle-box {
+        width: 60px;
+        height: 60px;
+        background: var(--textcol);
+        border-radius: 50%; /* 50% RADIUS: The "Circular Saw" that turns a square into a circle */
+        display: inline-block;
+      }
+
+      .outline-demo {
+        /* OUTLINE: A highlight ring that doesn't take up physical space */
+        outline: 3px solid orange;
+        /* OUTLINE-OFFSET: The "Halo Gap." Creates space between the border and the outline */
+        outline-offset: 8px;
+        margin: 20px;
+        padding: 10px;
+      }
+
+      /* --- 3. TEXT FORMATTING --- */
+      .text-details {
+        font-weight: 300; /* FONT-WEIGHT: Controls "Handwriting" thickness (Thin) */
+        font-style: italic; /* FONT-STYLE: Slants the text */
+        line-height: 2.5; /* LINE-HEIGHT: The "Air" between lines of text */
+        letter-spacing: 4px; /* LETTER-SPACING: Stretches out the letters in a word */
+        text-align: justify; /* TEXT-ALIGN: Stretches text to touch both left and right edges */
+        text-transform: uppercase; /* TRANSFORMATION: Forces all letters to be CAPITALS */
+      }
+
+      /* --- 4. LISTS & TABLES --- */
+      ul {
+        list-style-type: square;
+      } /* LIST-STYLE: Changes dots to squares or numbers */
+      table {
+        width: 100%;
+        /* BORDER-COLLAPSE: Merges double lines into single sharp lines */
+        border-collapse: collapse;
+      }
+      td {
+        border: 1px solid #ddd;
+        padding: 10px;
+      }
+
+      /* --- 5. ANIMATIONS --- */
+      @keyframes move {
+        /* KEYFRAMES: The "Script." 0% is the start, 100% is the finish line */
+        0% {
+          left: 0px;
+        }
+        100% {
+          left: 300px;
+        }
+      }
+
+      .gradient3 {
+        width: 100px;
+        height: 100px;
+        background-color: #248549;
+        /* POSITION RELATIVE: "Unlocks" the box so 'left' and 'top' movement actually works */
+        position: relative;
+        /* ANIMATION: Connects the 'move' script. Infinite means it never stops. Alternate means back-and-forth. */
+        animation: move 3s infinite alternate ease-in-out;
+      }
+
+      /* --- 6. POSITIONING --- */
+      .sticky-nav {
+        /* STICKY: The "Fridge Magnet." Scrolls until it hits the top, then stays there */
+        position: sticky;
+        top: 0;
+        background: #333;
+        color: white;
+        padding: 10px;
+        z-index: 1000; /* Z-INDEX: Stacking order. High numbers stay "on top" of others. */
+      }
+
+      .fixed-alert {
+        /* FIXED: The "Sticker." Stays in one spot on the screen even when you scroll away */
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: red;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      .parent-box {
+        position: relative;
+        height: 100px;
+        border: 1px solid black;
+      }
+      .absolute-child {
+        /* ABSOLUTE: The "Pinned Note." Stays at a specific spot relative to its parent container */
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        background: yellow;
+      }
+
+      /* --- 7. PSEUDO MAGIC --- */
+      .magic-btn:hover {
+        background: #248549;
+        color: white;
+        cursor: pointer;
+      } /* HOVER: When mouse touches it */
+      .magic-btn:active {
+        transform: scale(0.95);
+      } /* ACTIVE: The moment you are clicking down */
+      input:focus {
+        background: #e0f2fe;
+        border: 2px solid #3b82f6;
+      } /* FOCUS: When you click to type inside */
+
+      .intro::before {
+        content: "📢 ";
+      } /* ::BEFORE: Adds a "Ghost" icon before the text */
+      .intro::first-line {
+        font-weight: bold;
+        color: blue;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); /* TEXT-SHADOW: Puts a glow/shadow behind letters */
+      }
+
+      /* --- 8. TRANSFORMS (The Shape-Shifters) --- */
+      .gradient {
+        height: 100px;
+        width: 200px;
+        margin-bottom: 20px;
+        background-image: linear-gradient(
+          to top right,
+          #1a82af,
+          red,
+          blue,
+          green,
+          pink
+        );
+        transform: scale(1.5, 1); /* SCALE: Stretches (X, Y) the box */
+      }
+
+      .gradient1 {
+        height: 100px;
+        width: 200px;
+        margin: 40px 0;
+        background-image: radial-gradient(
+          #1a82af,
+          red,
+          blue,
+          green,
+          pink
+        ); /* RADIAL: The "Ripple" fade */
+        transform: rotate(30deg) scaleY(1.5); /* ROTATE: Spins it by degrees (deg) */
+      }
+
+      .gradient2 {
+        height: 150px;
+        width: 200px;
+        margin: 40px 0;
+        box-shadow: 15px 25px 10px rgba(0, 0, 0, 0.5);
+        /* TRANSLATE: Moves it. SKEW: Tilts it like it's leaning. */
+        transform: translate(20px, 20px) skewX(10deg);
+        /* REPEATING RADIAL: The "Zebra" patterns */
+        background-image: repeating-radial-gradient(
+          at bottom right,
+          red 0px,
+          red 10px,
+          black 10px,
+          black 20px
+        );
+      }
+
+      /* --- 9. TRANSITIONS --- */
+      img {
+        /* TRANSITION: The "Slow Motion." Makes changes (spins, size) happen smoothly over time */
+        transition:
+          transform 2s,
+          width 2s;
+      }
+      img:hover {
+        transform: rotate(360deg);
         width: 300px;
-        height: 300px;
-        background-color: blue;
-        outline-style: groove;
-        outline-width: 5px;
-        outline-offset: 3px;
       }
     </style>
   </head>
   <body>
-    <h1>Learn CSS</h1>
+    <div class="sticky-nav">Sticky Navigation Bar</div>
+    <div class="fixed-alert">Fixed Alert!</div>
 
-    <p>
-      Cascading Style Sheets is a style sheet language used for describing the
-      presentation of a document written in a markup language such as HTML. CSS
-      is a cornerstone technology of the World Wide Web, alongside HTML and
-      JavaScript
-    </p>
+    <div class="container">
+      <h1 class="intro">Mastering CSS Sub-Topics</h1>
+      <p class="text-details">
+        Sample paragraph with line height and letter spacing.
+      </p>
 
-    <div class="blue-box"></div>
+      <div class="border-demo">Dotted Top, Dashed Bottom</div>
+      <div class="outline-demo">Outline with Offset Gap</div>
+      <div class="circle-box"></div>
+      <span><- 50% Radius Circle</span>
+
+      <h3>Interactive Elements</h3>
+      <button class="magic-btn">Hover & Click Me (:active)</button>
+      <br /><br />
+      <input type="text" placeholder="Click to see :focus" />
+
+      <h3>Positioning Demo</h3>
+      <div class="relative-box">I am Nudged (Relative)</div>
+      <div class="parent-box">
+        Parent Box
+        <div class="absolute-child">Pinned (Absolute)</div>
+      </div>
+
+      <h3>Animation Demo</h3>
+      <div class="gradient3"></div>
+    </div>
+
+    <br />
+    <div class="gradient"></div>
+    <div class="gradient1"></div>
+    <div class="gradient2"></div>
+    <br />
+    <img src="https://picsum.photos/200" alt="Sample Image" />
   </body>
 </html>
